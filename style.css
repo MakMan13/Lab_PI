@@ -1,0 +1,20 @@
+
+.header {
+    display: flex;
+    background-color: rgb(132, 239, 239);
+}
+
+.headerName { 
+    flex: 6;
+    align-items: flex-start; 
+}
+
+.headerNotif { 
+    flex: 2;
+    align-items: center;  
+}
+
+.headerProfile { 
+    flex: 2;
+    align-items: center;  
+} 
