@@ -5,6 +5,7 @@ body {
 
 .header {
   display: flex;
+  width: auto;
   justify-content: space-between;
   align-items: center;
   background: #333;
@@ -61,16 +62,21 @@ body {
   color: blue;
 }
 
-.studentsPageContainer {
+.students-page-container {
   display: flex;
+  width: auto;
 }
 
-.aboveTableBlock {
-  display: flex;
+.students-table-header-block {
   width: 100%;
-  padding-right: 20px;
-  padding-bottom: 3px;
-  padding-left: 100px;
+  padding-right: 30px;
+  padding-left: 75px;
+}
+
+.above-table-block {
+  display: flex;
+  width: auto;
+  margin-bottom: 10px;
 }
 
 .add-student-button {
@@ -80,4 +86,15 @@ body {
   width: 40px;
   font-size: 18px;
   align-self: flex-end;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.students-table th,
+.students-table td {
+  border: 2px solid black;
+  text-align: center;
 }
