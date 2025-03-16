@@ -1,20 +1,62 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
 .header {
-    display: flex;
-    background-color: rgb(132, 239, 239);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  color: white;
+  padding: 10px 20px;
 }
 
-.headerName { 
-    flex: 6;
-    align-items: flex-start; 
+.logo {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.headerNotif { 
-    flex: 2;
-    align-items: center;  
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.headerProfile { 
-    flex: 2;
-    align-items: center;  
-} 
+.icon,
+.avatar {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.username {
+  font-size: 16px;
+}
+
+.nav {
+  list-style: none;
+  padding-left: 20px;
+  padding-top: 10px;
+  width: 10%;
+}
+
+.nav li {
+  margin-bottom: 5px;
+  font-size: 18;
+}
+
+.navItemActive {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
+
+.navItemInactive {
+  text-decoration: none;
+  color: blue;
+}
