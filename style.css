@@ -60,3 +60,24 @@ body {
   text-decoration: none;
   color: blue;
 }
+
+.studentsPageContainer {
+  display: flex;
+}
+
+.aboveTableBlock {
+  display: flex;
+  width: 100%;
+  padding-right: 20px;
+  padding-bottom: 3px;
+  padding-left: 100px;
+}
+
+.add-student-button {
+  float: right;
+  margin-left: auto;
+  height: 40px;
+  width: 40px;
+  font-size: 18px;
+  align-self: flex-end;
+}
