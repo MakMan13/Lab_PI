@@ -98,3 +98,47 @@ body {
   border: 2px solid black;
   text-align: center;
 }
+
+.circle-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.online {
+  background-color: rgb(38, 203, 38);
+}
+
+.offline {
+  background-color: rgb(151, 143, 143);
+}
+
+.table-options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.edit-table-button {
+  width: 30px;
+  height: 30px;
+}
+
+.delete-table-button {
+  width: 30px;
+  height: 30px;
+}
+
+.edit-table-button img,
+.delete-table-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.table-options button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
