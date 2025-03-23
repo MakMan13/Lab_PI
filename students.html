@@ -27,126 +27,171 @@
       <div class="students-table-header-block">
         <div class="above-table-block">
           <h2>Students</h2>
-          <button class="add-student-button">+</button>
+          <button class="add-student-button" onclick="showAddStudentDialog()">
+            +
+          </button>
         </div>
 
-        <table class="students-table">
-          <tr style="height: 3em">
-            <th style="width: 5%">
-              <input type="checkbox" id="main-table-checkbox" />
-            </th>
-            <th style="width: 10%">Group</th>
-            <th style="width: 25%">Name</th>
-            <th style="width: 8%">Gender</th>
-            <th style="width: 25%">Birthday</th>
-            <th style="width: 10%">Status</th>
-            <th style="width: 20%">Options</th>
-          </tr>
-          <tr style="height: 2.5em">
-            <td><input type="checkbox" id="1-table-checkbox" /></td>
-            <td>KN-21</td>
-            <td>Petro Mogyla</td>
-            <td>M</td>
-            <td>18.03.2006</td>
-            <td><div class="circle-status online"></div></td>
-            <td>
-              <div class="table-options">
-                <button
-                  class="edit-table-button"
-                  id="1-table-edit-btn"
-                  disabled
-                >
-                  <img src="img/edit.svg" alt="edit" />
-                </button>
-                <button
-                  class="delete-table-button"
-                  id="1-table-delete-btn"
-                  disabled
-                >
-                  <img src="img/delete.svg" alt="delete" />
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr style="height: 2.5em">
-            <td><input type="checkbox" id="2-table-checkbox" /></td>
-            <td>KN-22</td>
-            <td>Taras Hopak</td>
-            <td>M</td>
-            <td>14.11.2005</td>
-            <td><div class="circle-status online"></div></td>
-            <td>
-              <div class="table-options">
-                <button
-                  class="edit-table-button"
-                  id="2-table-edit-btn"
-                  disabled
-                >
-                  <img src="img/edit.svg" alt="edit" />
-                </button>
-                <button
-                  class="delete-table-button"
-                  id="2-table-delete-btn"
-                  disabled
-                >
-                  <img src="img/delete.svg" alt="delete" />
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr style="height: 2.5em">
-            <td><input type="checkbox" id="3-table-checkbox" /></td>
-            <td>KN-22</td>
-            <td>Sophia Gnatkovska</td>
-            <td>F</td>
-            <td>06.08.2006</td>
-            <td><div class="circle-status offline"></div></td>
-            <td>
-              <div class="table-options">
-                <button
-                  class="edit-table-button"
-                  id="3-table-edit-btn"
-                  disabled
-                >
-                  <img src="img/edit.svg" alt="edit" />
-                </button>
-                <button
-                  class="delete-table-button"
-                  id="3-table-delete-btn"
-                  disabled
-                >
-                  <img src="img/delete.svg" alt="delete" />
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr style="height: 2.5em">
-            <td><input type="checkbox" id="4-table-checkbox" /></td>
-            <td>KN-23</td>
-            <td>Maksym Shala</td>
-            <td>M</td>
-            <td>11.05.2006</td>
-            <td><div class="circle-status online"></div></td>
-            <td>
-              <div class="table-options">
-                <button
-                  class="edit-table-button"
-                  id="4-table-edit-btn"
-                  disabled
-                >
-                  <img src="img/edit.svg" alt="edit" />
-                </button>
-                <button
-                  class="delete-table-button"
-                  id="4-table-delete-btn"
-                  disabled
-                >
-                  <img src="img/delete.svg" alt="delete" />
-                </button>
-              </div>
-            </td>
-          </tr>
+        <table class="students-table" id="students-table">
+          <tbody>
+            <tr style="height: 3rem">
+              <th style="width: 5%">
+                <input type="checkbox" id="main-table-checkbox" />
+              </th>
+              <th style="width: 10%">Group</th>
+              <th style="width: 25%">Name</th>
+              <th style="width: 8%">Gender</th>
+              <th style="width: 25%">Birthday</th>
+              <th style="width: 10%">Status</th>
+              <th style="width: 20%">Options</th>
+            </tr>
+            <tr style="height: 2.5rem">
+              <td><input type="checkbox" id="1-table-checkbox" /></td>
+              <td>KN-21</td>
+              <td>Petro Mogyla</td>
+              <td>M</td>
+              <td>18.03.2006</td>
+              <td><div class="circle-status online"></div></td>
+              <td>
+                <div class="table-options">
+                  <button
+                    class="edit-table-button"
+                    id="1-table-edit-btn"
+                    disabled
+                  >
+                    <img src="img/edit.svg" alt="edit" />
+                  </button>
+                  <button
+                    class="delete-table-button"
+                    id="1-table-delete-btn"
+                    disabled
+                  >
+                    <img src="img/delete.svg" alt="delete" />
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr style="height: 2.5rem">
+              <td><input type="checkbox" id="2-table-checkbox" /></td>
+              <td>KN-22</td>
+              <td>Taras Hopak</td>
+              <td>M</td>
+              <td>14.11.2005</td>
+              <td><div class="circle-status online"></div></td>
+              <td>
+                <div class="table-options">
+                  <button
+                    class="edit-table-button"
+                    id="2-table-edit-btn"
+                    disabled
+                  >
+                    <img src="img/edit.svg" alt="edit" />
+                  </button>
+                  <button
+                    class="delete-table-button"
+                    id="2-table-delete-btn"
+                    disabled
+                  >
+                    <img src="img/delete.svg" alt="delete" />
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr style="height: 2.5rem">
+              <td><input type="checkbox" id="3-table-checkbox" /></td>
+              <td>KN-22</td>
+              <td>Sophia Gnatkovska</td>
+              <td>F</td>
+              <td>06.08.2006</td>
+              <td><div class="circle-status offline"></div></td>
+              <td>
+                <div class="table-options">
+                  <button
+                    class="edit-table-button"
+                    id="3-table-edit-btn"
+                    disabled
+                  >
+                    <img src="img/edit.svg" alt="edit" />
+                  </button>
+                  <button
+                    class="delete-table-button"
+                    id="3-table-delete-btn"
+                    disabled
+                  >
+                    <img src="img/delete.svg" alt="delete" />
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr style="height: 2.5rem">
+              <td><input type="checkbox" id="4-table-checkbox" /></td>
+              <td>KN-23</td>
+              <td>Maksym Shala</td>
+              <td>M</td>
+              <td>11.05.2006</td>
+              <td><div class="circle-status online"></div></td>
+              <td>
+                <div class="table-options">
+                  <button
+                    class="edit-table-button"
+                    id="4-table-edit-btn"
+                    disabled
+                  >
+                    <img src="img/edit.svg" alt="edit" />
+                  </button>
+                  <button
+                    class="delete-table-button"
+                    id="4-table-delete-btn"
+                    disabled
+                  >
+                    <img src="img/delete.svg" alt="delete" />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
         </table>
+      </div>
+    </div>
+
+    <div class="add-modal-window" id="add-modal-window">
+      <div class="add-modal-header">
+        <h3>Add student</h3>
+        <button class="image-button" onclick="closeAddStudentDialog()">
+          <img src="img/close.svg" alt="close" />
+        </button>
+      </div>
+
+      <div class="add-modal-content">
+        <label id="modal-group-input">Group</label>
+        <select class="add-modal-input" style="width: 64%">
+          <option selected hidden>Select Group</option>
+          <option>KN-21</option>
+          <option>KN-22</option>
+          <option>KN-23</option>
+          <option>KN-24</option>
+        </select>
+
+        <label id="modal-first-name-input">First name</label>
+        <input type="text" class="add-modal-input" />
+
+        <label id="modal-last-name-input">Last name</label>
+        <input type="text" class="add-modal-input" />
+
+        <label id="modal-gender-input">Gender</label>
+        <select class="add-modal-input" style="width: 64%">
+          <option selected hidden>Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+
+        <label id="modal-birthday-input">Birthday</label>
+        <input type="date" class="add-modal-input" />
+      </div>
+
+      <div class="add-modal-footer">
+        <button onclick="closeAddStudentDialog()">Cancel</button>
+        <button onclick="addStudentToTheTable()">Add</button>
       </div>
     </div>
   </body>
