@@ -80,3 +80,27 @@ function addStudentToTheTable() {
 
   document.getElementById("add-modal-window").style.display = "none";
 }
+
+document
+  .getElementById("profile-icon")
+  .addEventListener("mouseenter", function () {
+    document.getElementById("profile-modal-id").style.display = "block";
+  });
+
+document
+  .getElementById("profile-icon")
+  .addEventListener("mouseleave", function () {
+    document.getElementById("profile-modal-id").style.display = "none";
+  });
+
+document
+  .getElementById("notif-icon")
+  .addEventListener("mouseenter", function () {
+    document.getElementById("notif-modal-id").style.display = "grid";
+  });
+
+document
+  .getElementById("notif-icon")
+  .addEventListener("mouseleave", function () {
+    document.getElementById("notif-modal-id").style.display = "none";
+  });

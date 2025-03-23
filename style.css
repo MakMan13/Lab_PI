@@ -200,3 +200,59 @@ body {
 .add-modal-input {
   width: 60%;
 }
+
+.notif-modal {
+  display: none;
+  position: fixed;
+
+  top: 5%;
+  left: 85%;
+  right: 0;
+
+  background-color: rgb(251, 252, 253);
+  border-radius: 5px;
+  border: 1px solid gray;
+
+  grid-template-columns: 30% 70%;
+  grid-template-rows: repeat(3, 75px);
+
+  align-items: center;
+}
+
+.message-preview {
+  background-color: gray;
+  border-radius: 10px;
+  width: 80%;
+  height: 40%;
+}
+
+.sender {
+  height: 100%;
+  width: 100%;
+
+  justify-items: center;
+  align-items: center;
+
+  padding-top: 35px;
+}
+
+.sender img {
+  height: 50%;
+}
+
+.sender h6 {
+  margin: 0;
+}
+
+.profile-modal {
+  display: none;
+  position: fixed;
+
+  top: 5%;
+  left: 92%;
+  right: 0;
+
+  background-color: rgb(251, 252, 253);
+  border-radius: 5px;
+  border: 1px solid gray;
+}

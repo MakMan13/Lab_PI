@@ -11,8 +11,13 @@
     <header class="header">
       <div class="logo">STR</div>
       <div class="user-info">
-        <img src="img/notification.png" alt="Сповіщення" class="icon" />
-        <img src="img/user.png" alt="Аватар" class="avatar" />
+        <img
+          src="img/notification.png"
+          alt="Сповіщення"
+          class="icon"
+          id="notif-icon"
+        />
+        <img src="img/user.png" alt="Аватар" class="avatar" id="profile-icon" />
         <span class="username">John Doe</span>
       </div>
     </header>
@@ -193,6 +198,31 @@
         <button onclick="closeAddStudentDialog()">Cancel</button>
         <button onclick="addStudentToTheTable()">Add</button>
       </div>
+    </div>
+
+    <div class="notif-modal" id="notif-modal-id">
+      <div class="sender">
+        <img src="img/user.png" alt="user" />
+        <h6>Someone #1</h6>
+      </div>
+      <div class="message-preview"></div>
+      <div class="sender">
+        <img src="img/user.png" alt="user" />
+        <h6>Someone #2</h6>
+      </div>
+      <div class="message-preview"></div>
+      <div class="sender">
+        <img src="img/user.png" alt="user" />
+        <h6>Someone #3</h6>
+      </div>
+      <div class="message-preview"></div>
+    </div>
+
+    <div class="profile-modal" id="profile-modal-id">
+      <ul style="list-style: none; text-align: left; padding-left: 10px">
+        <li>Profile</li>
+        <li>Log out</li>
+      </ul>
     </div>
   </body>
 </html>
