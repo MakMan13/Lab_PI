@@ -1,9 +1,14 @@
+let checkBoxCounter = 4;
+let tbody = document
+  .getElementById("students-table")
+  .getElementsByTagName("tbody")[0];
+
 document
   .getElementById("main-table-checkbox")
   .addEventListener("change", function () {
     let isChecked = this.checked;
 
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= checkBoxCounter; i++) {
       document.getElementById(`${i}-table-checkbox`).checked = isChecked;
 
       document.getElementById(`${i}-table-edit-btn`).disabled = !isChecked;
@@ -39,6 +44,19 @@ document
     document.getElementById("4-table-delete-btn").disabled = !this.checked;
   });
 
+for (let i = 0; i < tbody.rows.length; i++) {
+  document
+    .getElementById(`${i + 1}-table-edit-btn`)
+    .addEventListener("click", function () {
+      showEditStudentDialog(i);
+    });
+  document
+    .getElementById(`${i + 1}-table-delete-btn`)
+    .addEventListener("click", function () {
+      showDeleteStudentDialog(i);
+    });
+}
+
 function showAddStudentDialog() {
   document.getElementById("add-modal-window").style.display = "block";
 }
@@ -46,9 +64,45 @@ function showAddStudentDialog() {
 function closeAddStudentDialog() {
   document.getElementById("add-modal-window").style.display = "none";
 
-  document.getElementById("modal-group-input").value = "";
-  document.getElementById("modal-first-name-input").value = "";
-  document.getElementById("modal-last-name-input").value = "";
+  document.getElementById("modal-group-input").value = " ";
+  document.getElementById("modal-first-name-input").value = " ";
+  document.getElementById("modal-last-name-input").value = " ";
+}
+
+function showEditStudentDialog() {
+  document.getElementById("edit-modal-window").style.display = "block";
+}
+
+function closeEditStudentDialog() {
+  document.getElementById("edit-modal-window").style.display = "none";
+}
+
+function showDeleteStudentDialog(rowIndex) {
+  let student = tbody.rows[rowIndex].cells[2].textContent;
+  let deleteWindowQuestion = document.getElementById("delete-question-id");
+  deleteWindowQuestion.textContent += " ";
+  deleteWindowQuestion.textContent += student;
+  deleteWindowQuestion.textContent += "?";
+  document.getElementById("delete-modal-window-id").style.display = "block";
+
+  document
+    .getElementById("confirm-delete-id")
+    .addEventListener("click", function () {
+      deleteStudent(rowIndex);
+      document.getElementById("delete-modal-window-id").style.display = "none";
+    });
+
+  deleteWindowQuestion.textContent -= "?";
+  deleteWindowQuestion.textContent -= student;
+  deleteWindowQuestion.textContent -= " ";
+}
+
+function closeDeleteStudentDialog() {
+  document.getElementById("delete-modal-window-id").style.display = "none";
+}
+
+function deleteStudent(rowIndex) {
+  tbody.deleteRow(rowIndex);
 }
 
 function addStudentToTheTable() {
@@ -62,6 +116,8 @@ function addStudentToTheTable() {
 
   let checkbox = document.createElement("input");
   checkbox.type = "checkbox";
+  checkBoxCounter++;
+  checkbox.id = `${newRow.rowIndex}-table-checkbox`;
   checkBoxCell.appendChild(checkbox);
 
   let groupCell = newRow.insertCell(1);
@@ -96,7 +152,7 @@ function addStudentToTheTable() {
 
   let editButton = document.createElement("button");
   editButton.className = "edit-table-button";
-  editButton.id = "new-table-edit-btn";
+  editButton.id = `${newRow.rowIndex}-table-edit-btn`;
   editButton.disabled = true;
 
   let editImg = document.createElement("img");
@@ -106,13 +162,25 @@ function addStudentToTheTable() {
 
   let deleteButton = document.createElement("button");
   deleteButton.className = "delete-table-button";
-  deleteButton.id = "new-table-delete-btn";
+  deleteButton.id = `${newRow.rowIndex}-table-delete-btn`;
   deleteButton.disabled = true;
 
   let deleteImg = document.createElement("img");
   deleteImg.src = "img/delete.svg";
   deleteImg.alt = "delete";
   deleteButton.appendChild(deleteImg);
+
+  editButton.addEventListener("click", showEditStudentDialog);
+  deleteButton.addEventListener("click", function () {
+    showDeleteStudentDialog(newRow.rowIndex);
+  });
+
+  checkbox.addEventListener("change", function () {
+    document.getElementById(`${newRow.rowIndex}-table-edit-btn`).disabled =
+      !this.checked;
+    document.getElementById(`${newRow.rowIndex}-table-delete-btn`).disabled =
+      !this.checked;
+  });
 
   optionsDiv.appendChild(editButton);
   optionsDiv.appendChild(deleteButton);

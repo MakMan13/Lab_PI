@@ -31,6 +31,22 @@ body {
   cursor: pointer;
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.notif-pulse-animation {
+  animation: pulse 10s ease-out;
+}
+
 .avatar {
   border-radius: 50%;
 }
@@ -77,6 +93,13 @@ body {
   display: flex;
   width: auto;
   margin-bottom: 10px;
+}
+
+.table-pages-panel {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .add-student-button {
@@ -255,4 +278,44 @@ body {
   background-color: rgb(251, 252, 253);
   border-radius: 5px;
   border: 1px solid gray;
+}
+
+.delete-modal-window {
+  display: none;
+  position: fixed;
+
+  top: 35%;
+  left: 40%;
+
+  width: auto;
+  height: 25%;
+
+  background-color: rgb(251, 252, 253);
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-top: 5px;
+}
+
+.delete-modal-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border-bottom: 1px solid gray;
+}
+
+.delete-modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 8px 0px 8px;
+  border-bottom: 1px solid gray;
+}
+
+.delete-modal-footer {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  padding: 12px 8px 10px 12px;
 }
