@@ -88,6 +88,15 @@ document
     }, 4000);
   });
 
+document.getElementById("menu-toggle").addEventListener("click", function () {
+  //document.getElementById("nav-burger-id").classList.add("active");
+  document.getElementById("nav-burger-id").style.display = "block";
+});
+
+function closeBurgerMenu() {
+  document.getElementById("nav-burger-id").style.display = "none";
+}
+
 function showAddStudentDialog() {
   document.getElementById("add-modal-window").style.display = "block";
 }

@@ -26,7 +26,8 @@
     </header>
 
     <div class="students-page-container">
-      <ul class="nav">
+      <button id="menu-toggle" class="burger-menu">☰</button>
+      <ul class="nav" id="nav-id">
         <li><a href="index.html" class="navItemInactive">Dashboard</a></li>
         <li><a href="students.html" class="navItemActive">Students</a></li>
         <li><a href="tasks.html" class="navItemInactive">Tasks</a></li>
@@ -321,5 +322,14 @@
     <audio id="notif-sound" src="sounds/notif_sound.wav" preload="auto"></audio>
 
     <div class="notif-indicator" id="notif-indicator-id"></div>
+
+    <div class="nav-burger" id="nav-burger-id">
+      <button class="close-menu" onclick="closeBurgerMenu()">✖</button>
+      <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="students.html">Students</a></li>
+        <li><a href="tasks.html">Tasks</a></li>
+      </ul>
+    </div>
   </body>
 </html>
