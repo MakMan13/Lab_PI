@@ -31,20 +31,40 @@ body {
   cursor: pointer;
 }
 
-@keyframes pulse {
+.notif-indicator {
+  display: none;
+  position: fixed;
+  top: 4.5%;
+  left: 89.5%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+@keyframes shake {
   0% {
-    transform: scale(1);
+    transform: rotate(0deg);
   }
-  50% {
-    transform: scale(1.5);
+  20% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(-10deg);
+  }
+  80% {
+    transform: rotate(10deg);
   }
   100% {
-    transform: scale(1);
+    transform: rotate(0deg);
   }
 }
 
-.notif-pulse-animation {
-  animation: pulse 10s ease-out;
+.notif-shake-animation {
+  animation: shake 4s ease-out;
 }
 
 .avatar {
