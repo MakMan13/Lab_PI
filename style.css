@@ -1,4 +1,6 @@
 body {
+  width: 100%;
+  height: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
 }
@@ -73,6 +75,13 @@ body {
 
 .username {
   font-size: 16px;
+}
+
+@media (max-width: 376px) {
+  .username {
+    display: none;
+    font-size: 16px;
+  }
 }
 
 .nav {
@@ -157,19 +166,40 @@ body {
 
 .students-page-container {
   display: flex;
-  width: auto;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .students-table-header-block {
   width: 100%;
+  max-width: 100%;
   padding-right: 30px;
   padding-left: 75px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+@media (max-width: 426px) {
+  .students-table-header-block {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 25px;
+  }
 }
 
 .above-table-block {
   display: flex;
   width: auto;
   margin-bottom: 10px;
+}
+
+@media (max-width: 426px) {
+  .above-table-block {
+    display: flex;
+    width: auto;
+    margin-bottom: 10px;
+    padding-right: 10px;
+  }
 }
 
 .table-pages-panel {
@@ -188,8 +218,17 @@ body {
   align-self: flex-end;
 }
 
-.students-table {
+.table-container {
+  display: block;
   width: 100%;
+  min-width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.students-table {
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
 }
 
