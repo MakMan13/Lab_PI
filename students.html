@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
@@ -47,7 +48,12 @@
             <thead>
               <tr style="height: 3rem">
                 <th style="width: 5%">
-                  <input type="checkbox" id="main-table-checkbox" />
+                  <span class="sr-only">Chechbox to select all students</span>
+                  <input
+                    type="checkbox"
+                    id="main-table-checkbox"
+                    aria-label="Main Checkbox"
+                  />
                 </th>
                 <th style="width: 10%">Group</th>
                 <th style="width: 25%">Name</th>
@@ -59,7 +65,7 @@
             </thead>
             <tbody>
               <tr style="height: 2.5rem">
-                <td><input type="checkbox" id="0-table-checkbox" /></td>
+                <td><input type="checkbox" /></td>
                 <td>KN-21</td>
                 <td>Petro Mogyla</td>
                 <td>M</td>
@@ -67,25 +73,17 @@
                 <td><div class="circle-status online"></div></td>
                 <td>
                   <div class="table-options">
-                    <button
-                      class="edit-table-button"
-                      id="0-table-edit-btn"
-                      disabled
-                    >
+                    <button class="edit-table-button" disabled>
                       <img src="img/edit.svg" alt="edit" />
                     </button>
-                    <button
-                      class="delete-table-button"
-                      id="0-table-delete-btn"
-                      disabled
-                    >
+                    <button class="delete-table-button" disabled>
                       <img src="img/delete.svg" alt="delete" />
                     </button>
                   </div>
                 </td>
               </tr>
               <tr style="height: 2.5rem">
-                <td><input type="checkbox" id="1-table-checkbox" /></td>
+                <td><input type="checkbox" /></td>
                 <td>KN-22</td>
                 <td>Taras Hopak</td>
                 <td>M</td>
@@ -93,25 +91,17 @@
                 <td><div class="circle-status online"></div></td>
                 <td>
                   <div class="table-options">
-                    <button
-                      class="edit-table-button"
-                      id="1-table-edit-btn"
-                      disabled
-                    >
+                    <button class="edit-table-button" disabled>
                       <img src="img/edit.svg" alt="edit" />
                     </button>
-                    <button
-                      class="delete-table-button"
-                      id="1-table-delete-btn"
-                      disabled
-                    >
+                    <button class="delete-table-button" disabled>
                       <img src="img/delete.svg" alt="delete" />
                     </button>
                   </div>
                 </td>
               </tr>
               <tr style="height: 2.5rem">
-                <td><input type="checkbox" id="2-table-checkbox" /></td>
+                <td><input type="checkbox" /></td>
                 <td>KN-22</td>
                 <td>Sophia Gnatkovska</td>
                 <td>F</td>
@@ -119,25 +109,17 @@
                 <td><div class="circle-status offline"></div></td>
                 <td>
                   <div class="table-options">
-                    <button
-                      class="edit-table-button"
-                      id="2-table-edit-btn"
-                      disabled
-                    >
+                    <button class="edit-table-button" disabled>
                       <img src="img/edit.svg" alt="edit" />
                     </button>
-                    <button
-                      class="delete-table-button"
-                      id="2-table-delete-btn"
-                      disabled
-                    >
+                    <button class="delete-table-button" disabled>
                       <img src="img/delete.svg" alt="delete" />
                     </button>
                   </div>
                 </td>
               </tr>
               <tr style="height: 2.5rem">
-                <td><input type="checkbox" id="3-table-checkbox" /></td>
+                <td><input type="checkbox" /></td>
                 <td>KN-23</td>
                 <td>Maksym Shala</td>
                 <td>M</td>
@@ -145,18 +127,10 @@
                 <td><div class="circle-status online"></div></td>
                 <td>
                   <div class="table-options">
-                    <button
-                      class="edit-table-button"
-                      id="3-table-edit-btn"
-                      disabled
-                    >
+                    <button class="edit-table-button" disabled>
                       <img src="img/edit.svg" alt="edit" />
                     </button>
-                    <button
-                      class="delete-table-button"
-                      id="3-table-delete-btn"
-                      disabled
-                    >
+                    <button class="delete-table-button" disabled>
                       <img src="img/delete.svg" alt="delete" />
                     </button>
                   </div>
@@ -166,7 +140,7 @@
           </table>
         </div>
         <div class="table-pages-panel">
-          <button class="page-button"><</button>
+          <button class="page-button">&lt;</button>
           <button class="page-button">1</button>
           <button class="page-button">2</button>
           <button class="page-button">3</button>
@@ -187,7 +161,7 @@
         <label>Group</label>
         <select
           class="add-modal-input"
-          id="modal-group-input"
+          id="add-group-input-id"
           style="width: 64%"
         >
           <option selected hidden>Select Group</option>
@@ -198,19 +172,19 @@
         </select>
 
         <label>First name</label>
-        <input
-          type="text"
-          class="add-modal-input"
-          id="modal-first-name-input"
-        />
+        <label for="add-first-name-input" class="sr-only">Enter name:</label>
+        <input type="text" class="add-modal-input" id="add-first-name-input" />
 
         <label>Last name</label>
-        <input type="text" class="add-modal-input" id="modal-last-name-input" />
+        <label for="add-last-name-input" class="sr-only"
+          >Enter last name:</label
+        >
+        <input type="text" class="add-modal-input" id="add-last-name-input" />
 
         <label>Gender</label>
         <select
           class="add-modal-input"
-          id="modal-gender-input"
+          id="add-gender-input"
           style="width: 64%"
         >
           <option selected hidden>Select Gender</option>
@@ -219,7 +193,8 @@
         </select>
 
         <label>Birthday</label>
-        <input type="date" class="add-modal-input" id="modal-birthday-input" />
+        <label for="add-birthday-input" class="sr-only">Enter birthday:</label>
+        <input type="date" class="add-modal-input" id="add-birthday-input" />
       </div>
 
       <div class="add-modal-footer">
@@ -240,7 +215,7 @@
         <label>Group</label>
         <select
           class="add-modal-input"
-          id="modal-group-input"
+          id="edit-group-input-id"
           style="width: 64%"
         >
           <option selected hidden>Select Group</option>
@@ -251,14 +226,14 @@
         </select>
 
         <label>First name</label>
-        <input
-          type="text"
-          class="add-modal-input"
-          id="modal-first-name-input"
-        />
+        <label for="edit-first-name-input" class="sr-only">Edit name:</label>
+        <input type="text" class="add-modal-input" id="edit-first-name-input" />
 
         <label>Last name</label>
-        <input type="text" class="add-modal-input" id="modal-last-name-input" />
+        <label for="edit-last-name-input" class="sr-only"
+          >Edit last name:</label
+        >
+        <input type="text" class="add-modal-input" id="edit-last-name-input" />
 
         <label>Gender</label>
         <select
@@ -272,7 +247,8 @@
         </select>
 
         <label>Birthday</label>
-        <input type="date" class="add-modal-input" id="modal-birthday-input" />
+        <label for="edit-birthday-input" class="sr-only">Edit birthday:</label>
+        <input type="date" class="add-modal-input" id="edit-birthday-input" />
       </div>
 
       <div class="add-modal-footer">

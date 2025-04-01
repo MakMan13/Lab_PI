@@ -1,19 +1,6 @@
-let studentArray = [];
-
 let tbody = document
   .getElementById("students-table")
   .getElementsByTagName("tbody")[0];
-
-for (let i = 0; i < tbody.rows.length; ++i) {
-  let student = {
-    group: tbody.rows[i].cells[1].textContent,
-    name: tbody.rows[i].cells[2].textContent,
-    gender: tbody.rows[i].cells[3].textContent,
-    birthday: tbody.rows[i].cells[4].textContent,
-  };
-
-  studentArray.push(student);
-}
 
 document
   .getElementById("main-table-checkbox")
@@ -28,23 +15,32 @@ document
     }
   });
 
-for (let i = 0; i < tbody.rows.length; i++) {
-  document
-    .getElementById(`${i}-table-checkbox`)
-    .addEventListener("change", function () {
-      document.getElementById(`${i}-table-edit-btn`).disabled = !this.checked;
-      document.getElementById(`${i}-table-delete-btn`).disabled = !this.checked;
+updateTable();
+
+function updateTable() {
+  let checkboxes = tbody.querySelectorAll("input[type='checkbox']");
+  let editButtons = tbody.querySelectorAll(".edit-table-button");
+  let deleteButtons = tbody.querySelectorAll(".delete-table-button");
+
+  for (let i = 0; i < tbody.rows.length; i++) {
+    checkboxes[i].id = `${i}-table-checkbox`;
+    checkboxes[i].setAttribute("aria-label", `${i}-student-checkbox`);
+    editButtons[i].id = `${i}-table-edit-btn`;
+    deleteButtons[i].id = `${i}-table-delete-btn`;
+
+    checkboxes[i].addEventListener("change", function () {
+      editButtons[i].disabled = !this.checked;
+      deleteButtons[i].disabled = !this.checked;
     });
-  document
-    .getElementById(`${i}-table-edit-btn`)
-    .addEventListener("click", function () {
+
+    editButtons[i].addEventListener("click", function () {
       showEditStudentDialog(i);
     });
-  document
-    .getElementById(`${i}-table-delete-btn`)
-    .addEventListener("click", function () {
+
+    deleteButtons[i].addEventListener("click", function () {
       showDeleteStudentDialog(i);
     });
+  }
 }
 
 document
@@ -114,24 +110,26 @@ function closeEditStudentDialog() {
 }
 
 function showDeleteStudentDialog(rowIndex) {
-  let student = tbody.rows[rowIndex].cells[2].textContent;
+  console.log(rowIndex);
+  let student = tbody.rows[rowIndex]?.cells[2]?.textContent || "Unknown";
   let deleteStudentQuestion = document.getElementById("delete-question-id");
-  deleteStudentQuestion.textContent += " ";
-  deleteStudentQuestion.textContent += student;
-  deleteStudentQuestion.textContent += "?";
+  deleteStudentQuestion.textContent = `Are you sure you want to delete user ${student}?`;
   document.getElementById("delete-modal-window-id").style.display = "block";
 
-  document
-    .getElementById("confirm-delete-id")
-    .addEventListener("click", function () {
-      tbody.deleteRow(rowIndex);
-      document.getElementById(
-        `${rowIndex - 1}-table-delete-btn`
-      ).disabled = true;
-      deleteStudentQuestion.textContent =
-        "Are you sure you want to delete user";
-      document.getElementById("delete-modal-window-id").style.display = "none";
-    });
+  let confirmDeleteButton = document.getElementById("confirm-delete-id");
+
+  confirmDeleteButton.replaceWith(confirmDeleteButton.cloneNode(true));
+  confirmDeleteButton = document.getElementById("confirm-delete-id");
+
+  confirmDeleteButton.addEventListener("click", function () {
+    deleteRow(rowIndex);
+  });
+}
+
+function deleteRow(rowIndex) {
+  tbody.deleteRow(rowIndex);
+  document.getElementById("delete-modal-window-id").style.display = "none";
+  updateTable();
 }
 
 function closeDeleteStudentDialog() {
@@ -146,24 +144,23 @@ function addStudentToTheTable() {
 
   let checkbox = document.createElement("input");
   checkbox.type = "checkbox";
-  checkbox.id = `${newRow.rowIndex - 1}-table-checkbox`;
   checkBoxCell.appendChild(checkbox);
 
   let groupCell = newRow.insertCell(1);
-  groupCell.textContent = document.getElementById("modal-group-input").value;
+  groupCell.textContent = document.getElementById("add-group-input-id").value;
 
   let nameCell = newRow.insertCell(2);
   nameCell.textContent =
-    document.getElementById("modal-first-name-input").value +
+    document.getElementById("add-first-name-input").value +
     " " +
-    document.getElementById("modal-last-name-input").value;
+    document.getElementById("add-last-name-input").value;
 
   let genderCell = newRow.insertCell(3);
   genderCell.textContent =
-    document.getElementById("modal-gender-input").value == "Male" ? "M" : "F";
+    document.getElementById("add-gender-input").value == "Male" ? "M" : "F";
 
   let birthdayCell = newRow.insertCell(4);
-  let birthdayValue = document.getElementById("modal-birthday-input").value;
+  let birthdayValue = document.getElementById("add-birthday-input").value;
   let birthdayFormatted = birthdayValue
     ? birthdayValue.split("-").reverse().join(".")
     : "N/A";
@@ -181,8 +178,6 @@ function addStudentToTheTable() {
 
   let editButton = document.createElement("button");
   editButton.className = "edit-table-button";
-  editButton.id = `${newRow.rowIndex - 1}-table-edit-btn`;
-  console.log(newRow.rowIndex);
   editButton.disabled = true;
 
   let editImg = document.createElement("img");
@@ -192,7 +187,6 @@ function addStudentToTheTable() {
 
   let deleteButton = document.createElement("button");
   deleteButton.className = "delete-table-button";
-  deleteButton.id = `${newRow.rowIndex - 1}-table-delete-btn`;
   deleteButton.disabled = true;
 
   let deleteImg = document.createElement("img");
@@ -200,23 +194,12 @@ function addStudentToTheTable() {
   deleteImg.alt = "delete";
   deleteButton.appendChild(deleteImg);
 
-  editButton.addEventListener("click", showEditStudentDialog);
-  deleteButton.addEventListener("click", function () {
-    showDeleteStudentDialog(newRow.rowIndex - 1);
-  });
-
-  checkbox.addEventListener("change", function () {
-    document.getElementById(`${newRow.rowIndex - 1}-table-edit-btn`).disabled =
-      !this.checked;
-    document.getElementById(
-      `${newRow.rowIndex - 1}-table-delete-btn`
-    ).disabled = !this.checked;
-  });
-
   optionsDiv.appendChild(editButton);
   optionsDiv.appendChild(deleteButton);
 
   optionsCell.appendChild(optionsDiv);
 
   document.getElementById("add-modal-window").style.display = "none";
+
+  updateTable();
 }

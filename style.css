@@ -238,6 +238,18 @@ body {
   text-align: center;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .circle-status {
   width: 15px;
   height: 15px;
@@ -348,7 +360,6 @@ body {
   display: grid;
   grid-template-columns: 33% 66%;
   grid-template-rows: repeat(5, 1fr);
-
   justify-items: center;
   align-items: center;
 
@@ -450,7 +461,6 @@ body {
 
 .sender h6 {
   margin: 0;
-  justify-self: center;
 }
 
 .profile-modal {
