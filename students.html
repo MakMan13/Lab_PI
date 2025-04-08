@@ -15,12 +15,15 @@
       </div>
       <div class="user-info">
         <a href="messages.html"
-          ><img
-            src="img/notification.png"
-            alt="Notification"
-            class="icon"
-            id="notif-icon"
-        /></a>
+          ><div class="notif-image">
+            <div class="notif-indicator" id="notif-indicator-id"></div>
+            <img
+              src="img/notification.png"
+              alt="Notification"
+              class="icon"
+              id="notif-icon"
+            /></div
+        ></a>
 
         <img src="img/user.png" alt="Аватар" class="avatar" id="profile-icon" />
         <span class="username">John Doe</span>
@@ -238,7 +241,7 @@
         <label>Gender</label>
         <select
           class="add-modal-input"
-          id="modal-gender-input"
+          id="edit-gender-input"
           style="width: 64%"
         >
           <option selected hidden>Select Gender</option>
@@ -253,7 +256,7 @@
 
       <div class="add-modal-footer">
         <button onclick="closeEditStudentDialog()">Cancel</button>
-        <button onclick="addStudentToTheTable()">Save</button>
+        <button id="saveEditedStudentButton-id">Save</button>
       </div>
     </div>
 
@@ -299,8 +302,6 @@
     </div>
 
     <audio id="notif-sound" src="sounds/notif_sound.wav" preload="auto"></audio>
-
-    <div class="notif-indicator" id="notif-indicator-id"></div>
 
     <div class="nav-burger" id="nav-burger-id">
       <button class="close-menu" onclick="closeBurgerMenu()">✖</button>

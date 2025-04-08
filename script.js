@@ -85,7 +85,6 @@ document
   });
 
 document.getElementById("menu-toggle").addEventListener("click", function () {
-  //document.getElementById("nav-burger-id").classList.add("active");
   document.getElementById("nav-burger-id").style.display = "block";
 });
 
@@ -98,11 +97,58 @@ function showAddStudentDialog() {
 }
 
 function closeAddStudentDialog() {
+  document.getElementById("add-group-input-id").selectedIndex = 0;
+  document.getElementById("add-first-name-input").value = "";
+  document.getElementById("add-last-name-input").value = "";
+  document.getElementById("add-gender-input").selectedIndex = 0;
+  document.getElementById("add-birthday-input").value = "";
+
   document.getElementById("add-modal-window").style.display = "none";
 }
 
-function showEditStudentDialog() {
+function showEditStudentDialog(rowIndex) {
+  let currentRow = tbody.rows[rowIndex];
+
+  switch (currentRow.cells[1].textContent) {
+    case "KN-21":
+      document.getElementById("edit-group-input-id").selectedIndex = 1;
+      break;
+    case "KN-22":
+      document.getElementById("edit-group-input-id").selectedIndex = 2;
+      break;
+    case "KN-23":
+      document.getElementById("edit-group-input-id").selectedIndex = 3;
+      break;
+    case "KN-24":
+      document.getElementById("edit-group-input-id").selectedIndex = 4;
+      break;
+  }
+
+  document.getElementById("edit-first-name-input").value =
+    currentRow.cells[2].textContent.split(" ")[0];
+
+  document.getElementById("edit-last-name-input").value =
+    currentRow.cells[2].textContent.split(" ")[1];
+
+  const gender = currentRow.cells[3].textContent;
+  document.getElementById("edit-gender-input").selectedIndex =
+    gender === "M" ? 1 : 2;
+
+  let rawDate = currentRow.cells[4].textContent.trim();
+  let dateParts = rawDate.split(".");
+  let formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+  document.getElementById("edit-birthday-input").value = formattedDate;
+
   document.getElementById("edit-modal-window").style.display = "block";
+
+  let confirmSaveButton = document.getElementById("saveEditedStudentButton-id");
+
+  confirmSaveButton.replaceWith(confirmSaveButton.cloneNode(true));
+  confirmSaveButton = document.getElementById("saveEditedStudentButton-id");
+
+  confirmSaveButton.addEventListener("click", function () {
+    saveEditedStudent(rowIndex);
+  });
 }
 
 function closeEditStudentDialog() {
@@ -110,7 +156,6 @@ function closeEditStudentDialog() {
 }
 
 function showDeleteStudentDialog(rowIndex) {
-  console.log(rowIndex);
   let student = tbody.rows[rowIndex]?.cells[2]?.textContent || "Unknown";
   let deleteStudentQuestion = document.getElementById("delete-question-id");
   deleteStudentQuestion.textContent = `Are you sure you want to delete user ${student}?`;
@@ -199,7 +244,48 @@ function addStudentToTheTable() {
 
   optionsCell.appendChild(optionsDiv);
 
+  document.getElementById("add-group-input-id").selectedIndex = 0;
+  document.getElementById("add-first-name-input").value = "";
+  document.getElementById("add-last-name-input").value = "";
+  document.getElementById("add-gender-input").selectedIndex = 0;
+  document.getElementById("add-birthday-input").value = "";
+
   document.getElementById("add-modal-window").style.display = "none";
 
   updateTable();
+}
+
+function saveEditedStudent(rowIndex) {
+  let currentRow = tbody.rows[rowIndex];
+
+  let groupIndex = document.getElementById("edit-group-input-id").selectedIndex;
+  let firstName = document.getElementById("edit-first-name-input").value;
+  let secondName = document.getElementById("edit-last-name-input").value;
+  let genderIndex = document.getElementById("edit-gender-input").selectedIndex;
+  let birthdayValue = document.getElementById("edit-birthday-input").value;
+  let birthdayFormatted = birthdayValue
+    ? birthdayValue.split("-").reverse().join(".")
+    : "N/A";
+
+  switch (groupIndex) {
+    case 1:
+      currentRow.cells[1].textContent = "KN-21";
+      break;
+    case 2:
+      currentRow.cells[1].textContent = "KN-22";
+      break;
+    case 3:
+      currentRow.cells[1].textContent = "KN-23";
+      break;
+    case 4:
+      currentRow.cells[1].textContent = "KN-24";
+      break;
+  }
+
+  currentRow.cells[2].textContent = firstName + " " + secondName;
+  currentRow.cells[3].textContent = genderIndex === 1 ? "M" : "F";
+
+  currentRow.cells[4].textContent = birthdayFormatted;
+
+  document.getElementById("edit-modal-window").style.display = "none";
 }
