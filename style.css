@@ -178,8 +178,10 @@ body {
 
 .students-page-container {
   display: flex;
+  position: relative;
   width: 100%;
   overflow-x: hidden;
+  z-index: 1;
 }
 
 .students-table-header-block {
@@ -316,6 +318,7 @@ body {
 
   top: 20%;
   left: 40%;
+  z-index: 20;
 
   border-radius: 10px;
   border: 2px solid black;
@@ -505,6 +508,7 @@ body {
 
   width: auto;
   height: 25%;
+  z-index: 20;
 
   background-color: rgb(167, 200, 233);
   border-radius: 5px;
@@ -564,4 +568,23 @@ body {
   justify-content: end;
   gap: 10px;
   padding: 12px 8px 10px 12px;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 10;
+}
+
+#overlay.active {
+  opacity: 1;
+  visibility: visible;
 }

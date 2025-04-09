@@ -93,6 +93,7 @@ function closeBurgerMenu() {
 }
 
 function showAddStudentDialog() {
+  document.getElementById("overlay").classList.add("active");
   document.getElementById("add-modal-window").style.display = "block";
 }
 
@@ -103,10 +104,12 @@ function closeAddStudentDialog() {
   document.getElementById("add-gender-input").selectedIndex = 0;
   document.getElementById("add-birthday-input").value = "";
 
+  document.getElementById("overlay").classList.remove("active");
   document.getElementById("add-modal-window").style.display = "none";
 }
 
 function showEditStudentDialog(rowIndex) {
+  document.getElementById("overlay").classList.add("active");
   let currentRow = tbody.rows[rowIndex];
 
   switch (currentRow.cells[1].textContent) {
@@ -152,10 +155,12 @@ function showEditStudentDialog(rowIndex) {
 }
 
 function closeEditStudentDialog() {
+  document.getElementById("overlay").classList.remove("active");
   document.getElementById("edit-modal-window").style.display = "none";
 }
 
 function showDeleteStudentDialog(rowIndex) {
+  document.getElementById("overlay").classList.add("active");
   let student = tbody.rows[rowIndex]?.cells[2]?.textContent || "Unknown";
   let deleteStudentQuestion = document.getElementById("delete-question-id");
   deleteStudentQuestion.textContent = `Are you sure you want to delete user ${student}?`;
@@ -173,11 +178,13 @@ function showDeleteStudentDialog(rowIndex) {
 
 function deleteRow(rowIndex) {
   tbody.deleteRow(rowIndex);
+  document.getElementById("overlay").classList.remove("active");
   document.getElementById("delete-modal-window-id").style.display = "none";
   updateTable();
 }
 
 function closeDeleteStudentDialog() {
+  document.getElementById("overlay").classList.remove("active");
   document.getElementById("delete-modal-window-id").style.display = "none";
 }
 
@@ -250,6 +257,7 @@ function addStudentToTheTable() {
   document.getElementById("add-gender-input").selectedIndex = 0;
   document.getElementById("add-birthday-input").value = "";
 
+  document.getElementById("overlay").classList.remove("active");
   document.getElementById("add-modal-window").style.display = "none";
 
   updateTable();
@@ -287,5 +295,17 @@ function saveEditedStudent(rowIndex) {
 
   currentRow.cells[4].textContent = birthdayFormatted;
 
+  const editedStudentOBJECT = {
+    newGroup: currentRow.cells[1].textContent,
+    newName: currentRow.cells[2].textContent,
+    newGender: genderIndex === 1 ? "Male" : "Female",
+    newBirthday: currentRow.cells[4].textContent,
+  };
+
+  const editedStudentJSON = JSON.stringify(editedStudentOBJECT);
+
+  console.log(editedStudentJSON);
+
+  document.getElementById("overlay").classList.remove("active");
   document.getElementById("edit-modal-window").style.display = "none";
 }
