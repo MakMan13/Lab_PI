@@ -382,6 +382,10 @@ body {
   border-bottom: 1px solid black;
 }
 
+form {
+  display: contents;
+}
+
 .add-modal-footer {
   display: flex;
   justify-content: end;
@@ -391,6 +395,12 @@ body {
 
 .add-modal-input {
   width: 60%;
+}
+
+.invalid {
+  border: 2px solid red;
+  outline: none;
+  background-color: #ffe6e6;
 }
 
 .notif-modal {

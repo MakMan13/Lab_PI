@@ -149,8 +149,8 @@ function showEditStudentDialog(rowIndex) {
   confirmSaveButton.replaceWith(confirmSaveButton.cloneNode(true));
   confirmSaveButton = document.getElementById("saveEditedStudentButton-id");
 
-  confirmSaveButton.addEventListener("click", function () {
-    saveEditedStudent(rowIndex);
+  confirmSaveButton.addEventListener("click", function (event) {
+    validateEdited(event, rowIndex);
   });
 }
 
@@ -186,6 +186,71 @@ function deleteRow(rowIndex) {
 function closeDeleteStudentDialog() {
   document.getElementById("overlay").classList.remove("active");
   document.getElementById("delete-modal-window-id").style.display = "none";
+}
+
+document
+  .getElementById("add-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const firstName = document.getElementById("add-first-name-input");
+    const lastName = document.getElementById("add-last-name-input");
+
+    const nameRegex = /^[A-ZА-ЯІЇЄ][a-zа-яіїє'-]{1,19}$/;
+    let regexValid = true;
+
+    if (!nameRegex.test(firstName.value.trim())) {
+      regexValid = false;
+      firstName.classList.add("invalid");
+    } else {
+      firstName.classList.remove("invalid");
+    }
+
+    if (!nameRegex.test(lastName.value.trim())) {
+      regexValid = false;
+      firstName.classList.add("invalid");
+    } else {
+      firstName.classList.remove("invalid");
+    }
+
+    if (this.checkValidity() && regexValid) {
+      addStudentToTheTable();
+      this.reset();
+    } else {
+      this.reportValidity();
+    }
+  });
+
+function validateEdited(event, rowIndex) {
+  event.preventDefault();
+
+  const form = document.getElementById("edit-form");
+  const firstName = document.getElementById("edit-first-name-input");
+  const lastName = document.getElementById("edit-last-name-input");
+
+  const nameRegex = /^[A-ZА-ЯІЇЄ][a-zа-яіїє'-]{1,19}$/;
+  let regexValid = true;
+
+  if (!nameRegex.test(firstName.value.trim())) {
+    regexValid = false;
+    firstName.classList.add("invalid");
+  } else {
+    firstName.classList.remove("invalid");
+  }
+
+  if (!nameRegex.test(lastName.value.trim())) {
+    regexValid = false;
+    firstName.classList.add("invalid");
+  } else {
+    firstName.classList.remove("invalid");
+  }
+  alert("Ny");
+  if (form.checkValidity() && regexValid) {
+    saveEditedStudent(rowIndex);
+    form.reset();
+  } else {
+    form.reportValidity();
+  }
 }
 
 function addStudentToTheTable() {
@@ -308,4 +373,11 @@ function saveEditedStudent(rowIndex) {
 
   document.getElementById("overlay").classList.remove("active");
   document.getElementById("edit-modal-window").style.display = "none";
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/sw.js")
+    .then(() => console.log("Service Worker registered"))
+    .catch((err) => console.error("Service Worker registration failed", err));
 }
