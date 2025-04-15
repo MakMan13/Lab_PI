@@ -3,7 +3,6 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
     <link rel="manifest" href="manifest.json" />
     <title>PI_project</title>
   </head>
@@ -26,15 +25,27 @@
       </div>
     </header>
 
-    <button id="menu-toggle" class="burger-menu">☰</button>
     <ul class="nav">
       <li><a href="index.html" class="navItemActive">Dashboard</a></li>
       <li><a href="students.html" class="navItemInactive">Students</a></li>
       <li><a href="tasks.html" class="navItemInactive">Tasks</a></li>
     </ul>
 
+    <button
+      id="menu-toggle"
+      class="burger-menu"
+      onclick="document.getElementById('nav-burger-id').style.display = 'block'"
+    >
+      ☰
+    </button>
+
     <div class="nav-burger" id="nav-burger-id">
-      <button class="close-menu" onclick="closeBurgerMenu()">✖</button>
+      <button
+        class="close-menu"
+        onclick="document.getElementById('nav-burger-id').style.display = 'none'"
+      >
+        ✖
+      </button>
       <ul>
         <li><a href="index.html">Dashboard</a></li>
         <li><a href="students.html">Students</a></li>

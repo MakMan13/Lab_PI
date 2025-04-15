@@ -208,9 +208,9 @@ document
 
     if (!nameRegex.test(lastName.value.trim())) {
       regexValid = false;
-      firstName.classList.add("invalid");
+      lastName.classList.add("invalid");
     } else {
-      firstName.classList.remove("invalid");
+      lastName.classList.remove("invalid");
     }
 
     if (this.checkValidity() && regexValid) {
@@ -240,11 +240,11 @@ function validateEdited(event, rowIndex) {
 
   if (!nameRegex.test(lastName.value.trim())) {
     regexValid = false;
-    firstName.classList.add("invalid");
+    lastName.classList.add("invalid");
   } else {
-    firstName.classList.remove("invalid");
+    lastName.classList.remove("invalid");
   }
-  alert("Ny");
+
   if (form.checkValidity() && regexValid) {
     saveEditedStudent(rowIndex);
     form.reset();
@@ -377,7 +377,7 @@ function saveEditedStudent(rowIndex) {
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("/sw.js")
+    .register("/service-worker.js")
     .then(() => console.log("Service Worker registered"))
     .catch((err) => console.error("Service Worker registration failed", err));
 }
