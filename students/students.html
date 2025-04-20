@@ -3,40 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <link rel="manifest" href="manifest.json" />
-    <title>PI_project</title>
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/students/students.css" />
+    <script src="/main.js" defer></script>
+    <script src="/students/students.js" defer></script>
+    <link rel="manifest" href="/manifest.json" />
+    <title>PI_project/students</title>
   </head>
 
   <body>
     <header class="header">
       <div class="logo">
-        <a href="index.html" style="all: unset; cursor: pointer">STR</a>
+        <a href="/dashboard/dashboard.html" style="all: unset; cursor: pointer"
+          >STR</a
+        >
       </div>
       <div class="user-info">
-        <a href="messages.html"
+        <a href="/messages/messages.html"
           ><div class="notif-image">
             <div class="notif-indicator" id="notif-indicator-id"></div>
             <img
-              src="img/notification.png"
+              src="/assets/img/notification.png"
               alt="Notification"
-              class="icon"
-              id="notif-icon"
+              class="notif-icon"
             /></div
         ></a>
 
-        <img src="img/user.png" alt="Аватар" class="avatar" id="profile-icon" />
+        <img src="/assets/img/user.png" alt="Profile" class="avatar" />
         <span class="username">John Doe</span>
       </div>
     </header>
 
     <div class="students-page-container">
-      <button id="menu-toggle" class="burger-menu">☰</button>
+      <button id="menu-toggle" class="open-burger-menu">☰</button>
       <ul class="nav" id="nav-id">
-        <li><a href="index.html" class="navItemInactive">Dashboard</a></li>
-        <li><a href="students.html" class="navItemActive">Students</a></li>
-        <li><a href="tasks.html" class="navItemInactive">Tasks</a></li>
+        <li>
+          <a href="/dashboard/dashboard.html" class="navItemInactive"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="/students/students.html" class="navItemActive">Students</a>
+        </li>
+        <li><a href="/tasks/tasks.html" class="navItemInactive">Tasks</a></li>
       </ul>
 
       <div class="students-table-header-block">
@@ -78,10 +87,10 @@
                 <td>
                   <div class="table-options">
                     <button class="edit-table-button" disabled>
-                      <img src="img/edit.svg" alt="edit" />
+                      <img src="/assets/img/edit.svg" alt="edit" />
                     </button>
                     <button class="delete-table-button" disabled>
-                      <img src="img/delete.svg" alt="delete" />
+                      <img src="/assets/img/delete.svg" alt="delete" />
                     </button>
                   </div>
                 </td>
@@ -96,10 +105,10 @@
                 <td>
                   <div class="table-options">
                     <button class="edit-table-button" disabled>
-                      <img src="img/edit.svg" alt="edit" />
+                      <img src="/assets/img/edit.svg" alt="edit" />
                     </button>
                     <button class="delete-table-button" disabled>
-                      <img src="img/delete.svg" alt="delete" />
+                      <img src="/assets/img/delete.svg" alt="delete" />
                     </button>
                   </div>
                 </td>
@@ -114,10 +123,10 @@
                 <td>
                   <div class="table-options">
                     <button class="edit-table-button" disabled>
-                      <img src="img/edit.svg" alt="edit" />
+                      <img src="/assets/img/edit.svg" alt="edit" />
                     </button>
                     <button class="delete-table-button" disabled>
-                      <img src="img/delete.svg" alt="delete" />
+                      <img src="/assets/img/delete.svg" alt="delete" />
                     </button>
                   </div>
                 </td>
@@ -132,10 +141,10 @@
                 <td>
                   <div class="table-options">
                     <button class="edit-table-button" disabled>
-                      <img src="img/edit.svg" alt="edit" />
+                      <img src="/assets/img/edit.svg" alt="edit" />
                     </button>
                     <button class="delete-table-button" disabled>
-                      <img src="img/delete.svg" alt="delete" />
+                      <img src="/assets/img/delete.svg" alt="delete" />
                     </button>
                   </div>
                 </td>
@@ -157,7 +166,7 @@
       <div class="add-modal-header">
         <h3>Add student</h3>
         <button class="image-button" onclick="closeAddStudentDialog()">
-          <img src="img/close.svg" alt="close" />
+          <img src="/assets/img/close.svg" alt="close" />
         </button>
       </div>
 
@@ -235,7 +244,7 @@
       <div class="add-modal-header">
         <h3>Edit student</h3>
         <button class="image-button" onclick="closeEditStudentDialog()">
-          <img src="img/close.svg" alt="close" />
+          <img src="/assets/img/close.svg" alt="close" />
         </button>
       </div>
 
@@ -305,7 +314,7 @@
       <div class="delete-modal-header">
         <h3>Warning</h3>
         <button class="image-button" onclick="closeDeleteStudentDialog()">
-          <img src="img/close.svg" alt="close" />
+          <img src="/assets/img/close.svg" alt="close" />
         </button>
       </div>
       <div class="delete-modal-content">
@@ -319,17 +328,17 @@
 
     <div class="notif-modal" id="notif-modal-id">
       <div class="sender">
-        <img src="img/user.png" alt="user" />
+        <img src="/assets/img/user.png" alt="user" />
         <h6>Someone #1</h6>
       </div>
       <div class="message-preview"></div>
       <div class="sender">
-        <img src="img/user.png" alt="user" />
+        <img src="/assets/img/user.png" alt="user" />
         <h6>Someone #2</h6>
       </div>
       <div class="message-preview"></div>
       <div class="sender">
-        <img src="img/user.png" alt="user" />
+        <img src="/assets/img/user.png" alt="user" />
         <h6>Someone #3</h6>
       </div>
       <div class="message-preview"></div>
@@ -342,14 +351,18 @@
       </ul>
     </div>
 
-    <audio id="notif-sound" src="sounds/notif_sound.wav" preload="auto"></audio>
+    <audio
+      id="notif-sound"
+      src="/assets/sounds/notif_sound.wav"
+      preload="auto"
+    ></audio>
 
     <div class="nav-burger" id="nav-burger-id">
-      <button class="close-menu" onclick="closeBurgerMenu()">✖</button>
+      <button class="close-burger-menu">✖</button>
       <ul>
-        <li><a href="index.html">Dashboard</a></li>
-        <li><a href="students.html">Students</a></li>
-        <li><a href="tasks.html">Tasks</a></li>
+        <li><a href="/dashboard/dashboard.html">Dashboard</a></li>
+        <li><a href="/students/students.html">Students</a></li>
+        <li><a href="/tasks/tasks.html">Tasks</a></li>
       </ul>
     </div>
 

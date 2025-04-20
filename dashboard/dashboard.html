@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/dashboard/dashboard.css" />
+    <script src="/main.js" defer></script>
+    <script src="/dashboard/dashboard.js" defer></script>
+    <link rel="manifest" href="/manifest.json" />
+    <title>PI_project/dashboard</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="/dashboard/dashboard.html" style="all: unset; cursor: pointer"
+          >STR</a
+        >
+      </div>
+      <div class="user-info">
+        <a href="/messages/messages.html"
+          ><img
+            src="/assets/img/notification.png"
+            alt="Notification"
+            class="notif-icon"
+        /></a>
+        <img src="/assets/img/user.png" alt="Аватар" class="avatar" />
+        <span class="username">John Doe</span>
+      </div>
+    </header>
+
+    <ul class="nav">
+      <li>
+        <a href="/dashboard/dashboard.html" class="navItemActive">Dashboard</a>
+      </li>
+      <li>
+        <a href="/students/students.html" class="navItemInactive">Students</a>
+      </li>
+      <li><a href="/tasks/tasks.html" class="navItemInactive">Tasks</a></li>
+    </ul>
+
+    <button id="menu-toggle" class="open-burger-menu">☰</button>
+
+    <div class="nav-burger" id="nav-burger-id">
+      <button class="close-burger-menu" id="close-burger-menu">✖</button>
+      <ul>
+        <li><a href="/dashboard/dashboard.html">Dashboard</a></li>
+        <li><a href="/students/students.html">Students</a></li>
+        <li><a href="/tasks/tasks.html">Tasks</a></li>
+      </ul>
+    </div>
+
+    <div class="notif-modal" id="notif-modal-id">
+      <div class="sender">
+        <img src="/assets/img/user.png" alt="user" />
+        <h6>Someone #1</h6>
+      </div>
+      <div class="message-preview"></div>
+      <div class="sender">
+        <img src="/assets/img/user.png" alt="user" />
+        <h6>Someone #2</h6>
+      </div>
+      <div class="message-preview"></div>
+      <div class="sender">
+        <img src="/assets/img/user.png" alt="user" />
+        <h6>Someone #3</h6>
+      </div>
+      <div class="message-preview"></div>
+    </div>
+
+    <div class="profile-modal" id="profile-modal-id">
+      <ul style="list-style: none; text-align: left; padding-left: 10px">
+        <li>Profile</li>
+        <li>Log out</li>
+      </ul>
+    </div>
+  </body>
+</html>

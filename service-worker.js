@@ -1,20 +1,18 @@
 const CACHE_NAME = "pwa-cache-v1";
-const ASSETS = [
-  "/img",
-  "/sounds",
-  "/index.html",
-  "/manifest.json",
-  "/messages.html",
-  "/script.js",
-  "/students.html",
-  "/style.css",
-  "/tasks.html",
+const ObjToCache = [
+  "/assets",
+  "/dashboard",
+  "/messages",
+  "/students",
+  "/tasks",
+  "/global.css",
+  "/main.js",
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS);
+      return cache.addAll(ObjToCache);
     })
   );
 });

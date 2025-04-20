@@ -1,0 +1,275 @@
+.students-page-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+.students-table-header-block {
+  width: 100%;
+  max-width: 100%;
+  padding-right: 30px;
+  padding-left: 75px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+@media (max-width: 426px) {
+  .students-table-header-block {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 25px;
+  }
+}
+
+.above-table-block {
+  display: flex;
+  width: auto;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 426px) {
+  .above-table-block {
+    display: flex;
+    width: auto;
+    margin-bottom: 10px;
+    padding-right: 10px;
+  }
+}
+
+.table-pages-panel {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.add-student-button {
+  float: right;
+  margin-left: auto;
+  height: 40px;
+  width: 40px;
+  font-size: 18px;
+  align-self: flex-end;
+}
+
+.table-container {
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.students-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+.students-table th,
+.students-table td {
+  border: 2px solid black;
+  text-align: center;
+}
+
+.circle-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.online {
+  background-color: rgb(38, 203, 38);
+}
+
+.offline {
+  background-color: rgb(151, 143, 143);
+}
+
+.table-options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.edit-table-button {
+  width: 30px;
+  height: 30px;
+}
+
+.delete-table-button {
+  width: 30px;
+  height: 30px;
+}
+
+.edit-table-button img,
+.delete-table-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.table-options button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.add-modal-window {
+  display: none;
+  position: fixed;
+  background-color: rgb(167, 200, 233);
+
+  width: 300px;
+  height: 250px;
+
+  top: 20%;
+  left: 40%;
+  z-index: 20;
+
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+@media (max-width: 426px) {
+  .add-modal-window {
+    width: 280px;
+    height: 250px;
+    top: 30%;
+    left: 20%;
+  }
+}
+
+@media (max-width: 376px) {
+  .add-modal-window {
+    width: 270px;
+    height: 250px;
+    top: 30%;
+    left: 17%;
+  }
+}
+
+@media (max-width: 321px) {
+  .add-modal-window {
+    width: 270px;
+    height: 250px;
+    top: 30%;
+    left: 10%;
+  }
+}
+
+.add-modal-header {
+  display: flex;
+  padding: 12px 12px 0 12px;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.image-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.image-button img {
+  width: 15px;
+  height: auto;
+}
+
+.add-modal-content {
+  display: grid;
+  grid-template-columns: 33% 66%;
+  grid-template-rows: repeat(5, 1fr);
+  justify-items: center;
+  align-items: center;
+
+  padding: 12px 12px 10px 12px;
+  border-bottom: 1px solid black;
+}
+
+.add-modal-footer {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  padding: 12px 8px 10px 12px;
+}
+
+.add-modal-input {
+  width: 60%;
+}
+
+.delete-modal-window {
+  display: none;
+  position: fixed;
+
+  top: 35%;
+  left: 40%;
+
+  width: auto;
+  height: 25%;
+  z-index: 20;
+
+  background-color: rgb(167, 200, 233);
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-top: 5px;
+}
+
+@media (max-width: 426px) {
+  .delete-modal-window {
+    top: 35%;
+    left: 20%;
+
+    width: 300px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 376px) {
+  .delete-modal-window {
+    top: 38%;
+    left: 12%;
+
+    width: 300px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 321px) {
+  .delete-modal-window {
+    top: 35%;
+    left: 10%;
+
+    width: 270px;
+    height: 180px;
+  }
+}
+
+.delete-modal-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border-bottom: 1px solid gray;
+}
+
+.delete-modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 8px 0px 8px;
+  border-bottom: 1px solid gray;
+}
+
+.delete-modal-footer {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  padding: 12px 8px 10px 12px;
+}

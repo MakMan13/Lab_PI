@@ -43,55 +43,6 @@ function updateTable() {
   }
 }
 
-document
-  .getElementById("profile-icon")
-  .addEventListener("mouseenter", function () {
-    document.getElementById("profile-modal-id").style.display = "block";
-  });
-
-document
-  .getElementById("profile-icon")
-  .addEventListener("mouseleave", function () {
-    document.getElementById("profile-modal-id").style.display = "none";
-  });
-
-document
-  .getElementById("notif-icon")
-  .addEventListener("mouseenter", function () {
-    document.getElementById("notif-modal-id").style.display = "grid";
-  });
-
-document
-  .getElementById("notif-icon")
-  .addEventListener("mouseleave", function () {
-    document.getElementById("notif-modal-id").style.display = "none";
-  });
-
-document.getElementById("notif-icon").addEventListener("click", function () {
-  document.getElementById("notif-indicator-id").style.display = "none";
-});
-
-document
-  .getElementById("notif-icon")
-  .addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-    this.classList.add("notif-shake-animation");
-    document.getElementById("notif-sound").play();
-    document.getElementById("notif-indicator-id").style.display = "block";
-
-    setTimeout(() => {
-      this.classList.remove("notif-shake-animation");
-    }, 4000);
-  });
-
-document.getElementById("menu-toggle").addEventListener("click", function () {
-  document.getElementById("nav-burger-id").style.display = "block";
-});
-
-function closeBurgerMenu() {
-  document.getElementById("nav-burger-id").style.display = "none";
-}
-
 function showAddStudentDialog() {
   document.getElementById("overlay").classList.add("active");
   document.getElementById("add-modal-window").style.display = "block";
@@ -149,9 +100,14 @@ function showEditStudentDialog(rowIndex) {
   confirmSaveButton.replaceWith(confirmSaveButton.cloneNode(true));
   confirmSaveButton = document.getElementById("saveEditedStudentButton-id");
 
-  confirmSaveButton.addEventListener("click", function (event) {
-    validateEdited(event, rowIndex);
-  });
+  document
+    .getElementById("edit-form")
+    .addEventListener("submit", function (event) {
+      alert("here");
+      validateEdited(event, rowIndex);
+    });
+
+  //confirmSaveButton.addEventListener("click", function (event) {validateEdited(event, rowIndex);});
 }
 
 function closeEditStudentDialog() {
@@ -298,7 +254,7 @@ function addStudentToTheTable() {
   editButton.disabled = true;
 
   let editImg = document.createElement("img");
-  editImg.src = "img/edit.svg";
+  editImg.src = "/assets/img/edit.svg";
   editImg.alt = "edit";
   editButton.appendChild(editImg);
 
@@ -307,7 +263,7 @@ function addStudentToTheTable() {
   deleteButton.disabled = true;
 
   let deleteImg = document.createElement("img");
-  deleteImg.src = "img/delete.svg";
+  deleteImg.src = "/assets/img/delete.svg";
   deleteImg.alt = "delete";
   deleteButton.appendChild(deleteImg);
 
@@ -373,11 +329,4 @@ function saveEditedStudent(rowIndex) {
 
   document.getElementById("overlay").classList.remove("active");
   document.getElementById("edit-modal-window").style.display = "none";
-}
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("/service-worker.js")
-    .then(() => console.log("Service Worker registered"))
-    .catch((err) => console.error("Service Worker registration failed", err));
 }
