@@ -124,7 +124,7 @@
   background-color: rgb(167, 200, 233);
 
   width: 300px;
-  height: 250px;
+  height: auto;
 
   top: 20%;
   left: 40%;
@@ -136,28 +136,28 @@
 
 @media (max-width: 426px) {
   .add-modal-window {
-    width: 280px;
-    height: 250px;
+    width: 70vw;
+    height: auto;
     top: 30%;
-    left: 20%;
+    left: 15%;
   }
 }
 
 @media (max-width: 376px) {
   .add-modal-window {
-    width: 270px;
-    height: 250px;
+    width: 70vw;
+    height: auto;
     top: 30%;
-    left: 17%;
+    left: 15%;
   }
 }
 
 @media (max-width: 321px) {
   .add-modal-window {
-    width: 270px;
-    height: 250px;
+    width: 70vw;
+    height: auto;
     top: 30%;
-    left: 10%;
+    left: 15%;
   }
 }
 
@@ -182,14 +182,40 @@
 }
 
 .add-modal-content {
-  display: grid;
-  grid-template-columns: 33% 66%;
-  grid-template-rows: repeat(5, 1fr);
-  justify-items: center;
-  align-items: center;
-
-  padding: 12px 12px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
   border-bottom: 1px solid black;
+}
+
+.form-group {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 65%;
+}
+
+.error-message {
+  color: red;
+  font-size: 11px;
+  margin: 0 0 2px 0;
+  display: none;
+}
+
+label {
+  width: 30%;
+}
+
+.add-modal-input {
+  flex: 70%;
+  width: 65%;
 }
 
 .add-modal-footer {
@@ -197,10 +223,6 @@
   justify-content: end;
   gap: 10px;
   padding: 12px 8px 10px 12px;
-}
-
-.add-modal-input {
-  width: 60%;
 }
 
 .delete-modal-window {
@@ -211,7 +233,7 @@
   left: 40%;
 
   width: auto;
-  height: 25%;
+  height: auto;
   z-index: 20;
 
   background-color: rgb(167, 200, 233);
@@ -223,20 +245,20 @@
 @media (max-width: 426px) {
   .delete-modal-window {
     top: 35%;
-    left: 20%;
+    left: 15%;
 
-    width: 300px;
-    height: 180px;
+    width: 70vw;
+    height: auto;
   }
 }
 
 @media (max-width: 376px) {
   .delete-modal-window {
     top: 38%;
-    left: 12%;
+    left: 15%;
 
-    width: 300px;
-    height: 180px;
+    width: 70vw;
+    height: auto;
   }
 }
 
@@ -245,8 +267,8 @@
     top: 35%;
     left: 10%;
 
-    width: 270px;
-    height: 180px;
+    width: 80vw;
+    height: auto;
   }
 }
 

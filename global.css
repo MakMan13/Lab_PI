@@ -193,12 +193,6 @@ form {
   display: contents;
 }
 
-.invalid {
-  border: 2px solid red;
-  outline: none;
-  background-color: #ffe6e6;
-}
-
 .notif-modal {
   display: none;
   position: fixed;

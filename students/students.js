@@ -103,7 +103,6 @@ function showEditStudentDialog(rowIndex) {
   document
     .getElementById("edit-form")
     .addEventListener("submit", function (event) {
-      alert("here");
       validateEdited(event, rowIndex);
     });
 
@@ -149,31 +148,55 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const firstName = document.getElementById("add-first-name-input");
-    const lastName = document.getElementById("add-last-name-input");
+    group = document.getElementById("add-group-input-id");
+    firstName = document.getElementById("add-first-name-input");
+    lastName = document.getElementById("add-last-name-input");
+    gender = document.getElementById("add-gender-input");
+    birthday = document.getElementById("add-birthday-input");
+
+    let errors = this.querySelectorAll("p");
 
     const nameRegex = /^[A-ZА-ЯІЇЄ][a-zа-яіїє'-]{1,19}$/;
     let regexValid = true;
 
+    if (group.value === "") {
+      regexValid = false;
+      errors[0].style.display = "block";
+    } else {
+      errors[0].style.display = "none";
+    }
+
     if (!nameRegex.test(firstName.value.trim())) {
       regexValid = false;
-      firstName.classList.add("invalid");
+      errors[1].style.display = "block";
     } else {
-      firstName.classList.remove("invalid");
+      errors[1].style.display = "none";
     }
 
     if (!nameRegex.test(lastName.value.trim())) {
       regexValid = false;
-      lastName.classList.add("invalid");
+      errors[2].style.display = "block";
     } else {
-      lastName.classList.remove("invalid");
+      errors[2].style.display = "none";
     }
 
-    if (this.checkValidity() && regexValid) {
+    if (gender.value === "") {
+      regexValid = false;
+      errors[3].style.display = "block";
+    } else {
+      errors[3].style.display = "none";
+    }
+
+    if (birthday.value === "") {
+      regexValid = false;
+      errors[4].style.display = "block";
+    } else {
+      errors[4].style.display = "none";
+    }
+
+    if (regexValid) {
       addStudentToTheTable();
       this.reset();
-    } else {
-      this.reportValidity();
     }
   });
 
@@ -181,31 +204,56 @@ function validateEdited(event, rowIndex) {
   event.preventDefault();
 
   const form = document.getElementById("edit-form");
-  const firstName = document.getElementById("edit-first-name-input");
-  const lastName = document.getElementById("edit-last-name-input");
+
+  group = document.getElementById("edit-group-input-id");
+  firstName = document.getElementById("edit-first-name-input");
+  lastName = document.getElementById("edit-last-name-input");
+  gender = document.getElementById("edit-gender-input");
+  birthday = document.getElementById("edit-birthday-input");
+
+  let errors = form.querySelectorAll("p");
 
   const nameRegex = /^[A-ZА-ЯІЇЄ][a-zа-яіїє'-]{1,19}$/;
   let regexValid = true;
 
+  if (group.value === "") {
+    regexValid = false;
+    errors[0].style.display = "block";
+  } else {
+    errors[0].style.display = "none";
+  }
+
   if (!nameRegex.test(firstName.value.trim())) {
     regexValid = false;
-    firstName.classList.add("invalid");
+    errors[1].style.display = "block";
   } else {
-    firstName.classList.remove("invalid");
+    errors[1].style.display = "none";
   }
 
   if (!nameRegex.test(lastName.value.trim())) {
     regexValid = false;
-    lastName.classList.add("invalid");
+    errors[2].style.display = "block";
   } else {
-    lastName.classList.remove("invalid");
+    errors[2].style.display = "none";
   }
 
-  if (form.checkValidity() && regexValid) {
+  if (gender.value === "") {
+    regexValid = false;
+    errors[3].style.display = "block";
+  } else {
+    errors[3].style.display = "none";
+  }
+
+  if (birthday.value === "") {
+    regexValid = false;
+    errors[4].style.display = "block";
+  } else {
+    errors[4].style.display = "none";
+  }
+
+  if (regexValid) {
     saveEditedStudent(rowIndex);
     form.reset();
-  } else {
-    form.reportValidity();
   }
 }
 

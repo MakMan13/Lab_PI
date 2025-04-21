@@ -172,65 +172,83 @@
 
       <div class="add-modal-content">
         <form id="add-form">
-          <label>Group</label>
-          <select
-            class="add-modal-input"
-            id="add-group-input-id"
-            style="width: 64%"
-            required
-          >
-            <option value="" selected hidden>Select Group</option>
-            <option>KN-21</option>
-            <option>KN-22</option>
-            <option>KN-23</option>
-            <option>KN-24</option>
-          </select>
+          <div class="form-group">
+            <label for="add-group-input-id">Group</label>
+            <div class="input-wrapper">
+              <p class="error-message" id="error-group">
+                Please select a group
+              </p>
+              <select class="add-modal-input" id="add-group-input-id" required>
+                <option value="" selected hidden>Select Group</option>
+                <option>KN-21</option>
+                <option>KN-22</option>
+                <option>KN-23</option>
+                <option>KN-24</option>
+              </select>
+            </div>
+          </div>
 
-          <label>First name</label>
-          <label for="add-first-name-input" class="sr-only">Enter name:</label>
-          <input
-            type="text"
-            class="add-modal-input"
-            id="add-first-name-input"
-            required
-          />
+          <div class="form-group">
+            <label for="add-first-name-input">First name</label>
+            <div class="input-wrapper">
+              <p class="error-message" id="error-first-name">
+                2-20 letters, big one first
+              </p>
+              <input
+                type="text"
+                class="add-modal-input"
+                id="add-first-name-input"
+                required
+              />
+            </div>
+          </div>
 
-          <label>Last name</label>
-          <label for="add-last-name-input" class="sr-only"
-            >Enter last name:</label
-          >
-          <input
-            type="text"
-            class="add-modal-input"
-            id="add-last-name-input"
-            required
-          />
+          <div class="form-group">
+            <label for="add-last-name-input">Last name</label>
+            <div class="input-wrapper">
+              <p class="error-message" id="error-last-name">
+                2-20 letters, big one first
+              </p>
+              <input
+                type="text"
+                class="add-modal-input"
+                id="add-last-name-input"
+                required
+              />
+            </div>
+          </div>
 
-          <label>Gender</label>
-          <select
-            class="add-modal-input"
-            id="add-gender-input"
-            style="width: 64%"
-            required
-          >
-            <option value="" selected hidden>Select Gender</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
+          <div class="form-group">
+            <label for="add-gender-input">Gender</label>
+            <div class="input-wrapper">
+              <p class="error-message" id="error-gender">
+                Please select a gender
+              </p>
+              <select class="add-modal-input" id="add-gender-input" required>
+                <option value="" selected hidden>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </div>
 
-          <label>Birthday</label>
-          <label for="add-birthday-input" class="sr-only"
-            >Enter birthday:</label
-          >
-          <input
-            type="date"
-            class="add-modal-input"
-            id="add-birthday-input"
-            required
-            min="1925-01-01"
-            max="2014-12-31"
-            value="2006-01-01"
-          />
+          <div class="form-group">
+            <label for="add-birthday-input">Birthday</label>
+            <div class="input-wrapper">
+              <p class="error-message" id="error-birthday">
+                Please enter a valid date
+              </p>
+              <input
+                type="date"
+                class="add-modal-input"
+                id="add-birthday-input"
+                required
+                min="1925-01-01"
+                max="2008-01-01"
+                value=""
+              />
+            </div>
+          </div>
         </form>
       </div>
 
@@ -250,55 +268,73 @@
 
       <div class="add-modal-content">
         <form id="edit-form">
-          <label>Group</label>
-          <select
-            class="add-modal-input"
-            id="edit-group-input-id"
-            style="width: 64%"
-          >
-            <option selected hidden>Select Group</option>
-            <option>KN-21</option>
-            <option>KN-22</option>
-            <option>KN-23</option>
-            <option>KN-24</option>
-          </select>
+          <div class="form-group">
+            <label for="edit-group-input-id">Group</label>
+            <div class="input-wrapper">
+              <p class="error-message">Please select a group</p>
+              <select class="add-modal-input" id="edit-group-input-id" required>
+                <option value="" selected hidden>Select Group</option>
+                <option>KN-21</option>
+                <option>KN-22</option>
+                <option>KN-23</option>
+                <option>KN-24</option>
+              </select>
+            </div>
+          </div>
 
-          <label>First name</label>
-          <label for="edit-first-name-input" class="sr-only">Edit name:</label>
-          <input
-            type="text"
-            class="add-modal-input"
-            id="edit-first-name-input"
-          />
+          <div class="form-group">
+            <label for="edit-first-name-input">First name</label>
+            <div class="input-wrapper">
+              <p class="error-message">2-20 letters, big one first</p>
+              <input
+                type="text"
+                class="add-modal-input"
+                id="edit-first-name-input"
+                required
+              />
+            </div>
+          </div>
 
-          <label>Last name</label>
-          <label for="edit-last-name-input" class="sr-only"
-            >Edit last name:</label
-          >
-          <input
-            type="text"
-            class="add-modal-input"
-            id="edit-last-name-input"
-          />
+          <div class="form-group">
+            <label for="edit-last-name-input">Last name</label>
+            <div class="input-wrapper">
+              <p class="error-message">2-20 letters, big one first</p>
+              <input
+                type="text"
+                class="add-modal-input"
+                id="edit-last-name-input"
+                required
+              />
+            </div>
+          </div>
 
-          <label>Gender</label>
-          <select
-            class="add-modal-input"
-            id="edit-gender-input"
-            style="width: 64%"
-            required
-            title="Please select a gender"
-          >
-            <option value="" hidden>Select Gender</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
+          <div class="form-group">
+            <label for="edit-gender-input">Gender</label>
+            <div class="input-wrapper">
+              <p class="error-message">Please select a gender</p>
+              <select class="add-modal-input" id="edit-gender-input" required>
+                <option value="" selected hidden>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </div>
 
-          <label>Birthday</label>
-          <label for="edit-birthday-input" class="sr-only"
-            >Edit birthday:</label
-          >
-          <input type="date" class="add-modal-input" id="edit-birthday-input" />
+          <div class="form-group">
+            <label for="edit-birthday-input">Birthday</label>
+            <div class="input-wrapper">
+              <p class="error-message">Please enter a valid date</p>
+              <input
+                type="date"
+                class="add-modal-input"
+                id="edit-birthday-input"
+                required
+                min="1925-01-01"
+                max="2008-01-01"
+                value=""
+              />
+            </div>
+          </div>
         </form>
       </div>
 
