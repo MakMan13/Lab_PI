@@ -76,80 +76,7 @@
                 <th style="width: 20%">Options</th>
               </tr>
             </thead>
-            <tbody>
-              <tr style="height: 2.5rem">
-                <td><input type="checkbox" /></td>
-                <td>KN-21</td>
-                <td>Petro Mogyla</td>
-                <td>M</td>
-                <td>18.03.2006</td>
-                <td><div class="circle-status online"></div></td>
-                <td>
-                  <div class="table-options">
-                    <button class="edit-table-button" disabled>
-                      <img src="/assets/img/edit.svg" alt="edit" />
-                    </button>
-                    <button class="delete-table-button" disabled>
-                      <img src="/assets/img/delete.svg" alt="delete" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr style="height: 2.5rem">
-                <td><input type="checkbox" /></td>
-                <td>KN-22</td>
-                <td>Taras Hopak</td>
-                <td>M</td>
-                <td>14.11.2005</td>
-                <td><div class="circle-status online"></div></td>
-                <td>
-                  <div class="table-options">
-                    <button class="edit-table-button" disabled>
-                      <img src="/assets/img/edit.svg" alt="edit" />
-                    </button>
-                    <button class="delete-table-button" disabled>
-                      <img src="/assets/img/delete.svg" alt="delete" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr style="height: 2.5rem">
-                <td><input type="checkbox" /></td>
-                <td>KN-22</td>
-                <td>Sophia Gnatkovska</td>
-                <td>F</td>
-                <td>06.08.2006</td>
-                <td><div class="circle-status offline"></div></td>
-                <td>
-                  <div class="table-options">
-                    <button class="edit-table-button" disabled>
-                      <img src="/assets/img/edit.svg" alt="edit" />
-                    </button>
-                    <button class="delete-table-button" disabled>
-                      <img src="/assets/img/delete.svg" alt="delete" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr style="height: 2.5rem">
-                <td><input type="checkbox" /></td>
-                <td>KN-23</td>
-                <td>Maksym Shala</td>
-                <td>M</td>
-                <td>11.05.2006</td>
-                <td><div class="circle-status online"></div></td>
-                <td>
-                  <div class="table-options">
-                    <button class="edit-table-button" disabled>
-                      <img src="/assets/img/edit.svg" alt="edit" />
-                    </button>
-                    <button class="delete-table-button" disabled>
-                      <img src="/assets/img/delete.svg" alt="delete" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
         <div class="table-pages-panel">
@@ -173,12 +100,17 @@
       <div class="add-modal-content">
         <form id="add-form">
           <div class="form-group">
-            <label for="add-group-input-id">Group</label>
+            <label for="add-group-input-id" name="group">Group</label>
             <div class="input-wrapper">
               <p class="error-message" id="error-group">
                 Please select a group
               </p>
-              <select class="add-modal-input" id="add-group-input-id" required>
+              <select
+                class="add-modal-input"
+                id="add-group-input-id"
+                name="group"
+                required
+              >
                 <option value="" selected hidden>Select Group</option>
                 <option>KN-21</option>
                 <option>KN-22</option>
@@ -198,13 +130,16 @@
                 type="text"
                 class="add-modal-input"
                 id="add-first-name-input"
+                name="username"
                 required
               />
             </div>
           </div>
 
           <div class="form-group">
-            <label for="add-last-name-input">Last name</label>
+            <label for="add-last-name-input" name="usersurname"
+              >Last name</label
+            >
             <div class="input-wrapper">
               <p class="error-message" id="error-last-name">
                 2-20 letters, big one first
@@ -213,6 +148,7 @@
                 type="text"
                 class="add-modal-input"
                 id="add-last-name-input"
+                name="surname"
                 required
               />
             </div>
@@ -224,7 +160,12 @@
               <p class="error-message" id="error-gender">
                 Please select a gender
               </p>
-              <select class="add-modal-input" id="add-gender-input" required>
+              <select
+                class="add-modal-input"
+                id="add-gender-input"
+                name="gender"
+                required
+              >
                 <option value="" selected hidden>Select Gender</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -242,6 +183,7 @@
                 type="date"
                 class="add-modal-input"
                 id="add-birthday-input"
+                name="birthday"
                 required
                 min="1925-01-01"
                 max="2008-01-01"

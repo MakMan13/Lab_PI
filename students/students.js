@@ -1,23 +1,52 @@
+class Student {
+  id = null;
+  group = null;
+  name = null;
+  surname = null;
+  gender = null;
+  birthday = null;
+
+  constructor(studentObject) {
+    this.id = studentObject.id;
+    this.group = studentObject.group;
+    this.name = studentObject.name;
+    this.surname = studentObject.surname;
+    this.gender = studentObject.gender;
+    this.birthday = studentObject.birthday;
+  }
+}
+
+let students = [];
 let tbody = document
   .getElementById("students-table")
   .getElementsByTagName("tbody")[0];
 
-document
-  .getElementById("main-table-checkbox")
-  .addEventListener("change", function () {
-    let isChecked = this.checked;
+async function getAllStudentsFromDB() {
+  const response = await fetch("/api/controller.php");
+  let studentsList = await response.json();
 
-    for (let i = 0; i < tbody.rows.length; i++) {
-      document.getElementById(`${i}-table-checkbox`).checked = isChecked;
+  for (const studentObj of studentsList) {
+    const student = new Student(studentObj);
+    students.push(student);
+  }
 
-      document.getElementById(`${i}-table-edit-btn`).disabled = !isChecked;
-      document.getElementById(`${i}-table-delete-btn`).disabled = !isChecked;
-    }
-  });
+  refillStudentsTable();
+}
 
-updateTable();
+function refillStudentsTable() {
+  tbody.innerHTML = "";
 
-function updateTable() {
+  for (let i = 0; i < students.length; ++i) {
+    addStudentToTheTable(i);
+  }
+
+  updateTableButtons();
+}
+
+getAllStudentsFromDB();
+// Виконано запит в БД, студенти в масиві об'єктів та в таблиці на екрані
+
+function updateTableButtons() {
   let checkboxes = tbody.querySelectorAll("input[type='checkbox']");
   let editButtons = tbody.querySelectorAll(".edit-table-button");
   let deleteButtons = tbody.querySelectorAll(".delete-table-button");
@@ -43,6 +72,19 @@ function updateTable() {
   }
 }
 
+document
+  .getElementById("main-table-checkbox")
+  .addEventListener("change", function () {
+    let isChecked = this.checked;
+
+    for (let i = 0; i < tbody.rows.length; i++) {
+      document.getElementById(`${i}-table-checkbox`).checked = isChecked;
+
+      document.getElementById(`${i}-table-edit-btn`).disabled = !isChecked;
+      document.getElementById(`${i}-table-delete-btn`).disabled = !isChecked;
+    }
+  });
+
 function showAddStudentDialog() {
   document.getElementById("overlay").classList.add("active");
   document.getElementById("add-modal-window").style.display = "block";
@@ -61,37 +103,17 @@ function closeAddStudentDialog() {
 
 function showEditStudentDialog(rowIndex) {
   document.getElementById("overlay").classList.add("active");
-  let currentRow = tbody.rows[rowIndex];
 
-  switch (currentRow.cells[1].textContent) {
-    case "KN-21":
-      document.getElementById("edit-group-input-id").selectedIndex = 1;
-      break;
-    case "KN-22":
-      document.getElementById("edit-group-input-id").selectedIndex = 2;
-      break;
-    case "KN-23":
-      document.getElementById("edit-group-input-id").selectedIndex = 3;
-      break;
-    case "KN-24":
-      document.getElementById("edit-group-input-id").selectedIndex = 4;
-      break;
-  }
-
+  document.getElementById("edit-group-input-id").value =
+    students[rowIndex].group;
   document.getElementById("edit-first-name-input").value =
-    currentRow.cells[2].textContent.split(" ")[0];
-
+    students[rowIndex].name;
   document.getElementById("edit-last-name-input").value =
-    currentRow.cells[2].textContent.split(" ")[1];
-
-  const gender = currentRow.cells[3].textContent;
-  document.getElementById("edit-gender-input").selectedIndex =
-    gender === "M" ? 1 : 2;
-
-  let rawDate = currentRow.cells[4].textContent.trim();
-  let dateParts = rawDate.split(".");
-  let formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
-  document.getElementById("edit-birthday-input").value = formattedDate;
+    students[rowIndex].surname;
+  document.getElementById("edit-gender-input").value =
+    students[rowIndex].gender;
+  document.getElementById("edit-birthday-input").value =
+    students[rowIndex].birthday;
 
   document.getElementById("edit-modal-window").style.display = "block";
 
@@ -105,8 +127,6 @@ function showEditStudentDialog(rowIndex) {
     .addEventListener("submit", function (event) {
       validateEdited(event, rowIndex);
     });
-
-  //confirmSaveButton.addEventListener("click", function (event) {validateEdited(event, rowIndex);});
 }
 
 function closeEditStudentDialog() {
@@ -116,7 +136,7 @@ function closeEditStudentDialog() {
 
 function showDeleteStudentDialog(rowIndex) {
   document.getElementById("overlay").classList.add("active");
-  let student = tbody.rows[rowIndex]?.cells[2]?.textContent || "Unknown";
+  let student = tbody.rows[rowIndex].cells[2].textContent;
   let deleteStudentQuestion = document.getElementById("delete-question-id");
   deleteStudentQuestion.textContent = `Are you sure you want to delete user ${student}?`;
   document.getElementById("delete-modal-window-id").style.display = "block";
@@ -133,9 +153,11 @@ function showDeleteStudentDialog(rowIndex) {
 
 function deleteRow(rowIndex) {
   tbody.deleteRow(rowIndex);
+  students.splice(1, rowIndex);
+  // TO DO видалити елемент з бд
   document.getElementById("overlay").classList.remove("active");
   document.getElementById("delete-modal-window-id").style.display = "none";
-  updateTable();
+  updateTableButtons();
 }
 
 function closeDeleteStudentDialog() {
@@ -148,54 +170,33 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    group = document.getElementById("add-group-input-id");
-    firstName = document.getElementById("add-first-name-input");
-    lastName = document.getElementById("add-last-name-input");
-    gender = document.getElementById("add-gender-input");
-    birthday = document.getElementById("add-birthday-input");
+    students[rowIndex].group = document.getElementById("add-group-input-id");
+    students[rowIndex].name = document.getElementById("add-first-name-input");
+    students[rowIndex].surname = document.getElementById("add-last-name-input");
+    students[rowIndex].gender = document.getElementById("add-gender-input");
+    students[rowIndex].birthday = document.getElementById("add-birthday-input");
 
     let errors = this.querySelectorAll("p");
 
     const nameRegex = /^[A-ZА-ЯІЇЄ][a-zа-яіїє'-]{1,19}$/;
     let regexValid = true;
 
-    if (group.value === "") {
-      regexValid = false;
-      errors[0].style.display = "block";
-    } else {
-      errors[0].style.display = "none";
-    }
-
-    if (!nameRegex.test(firstName.value.trim())) {
+    if (!nameRegex.test(students[rowIndex].name.trim())) {
       regexValid = false;
       errors[1].style.display = "block";
     } else {
       errors[1].style.display = "none";
     }
 
-    if (!nameRegex.test(lastName.value.trim())) {
+    if (!nameRegex.test(students[rowIndex].surname.trim())) {
       regexValid = false;
       errors[2].style.display = "block";
     } else {
       errors[2].style.display = "none";
     }
 
-    if (gender.value === "") {
-      regexValid = false;
-      errors[3].style.display = "block";
-    } else {
-      errors[3].style.display = "none";
-    }
-
-    if (birthday.value === "") {
-      regexValid = false;
-      errors[4].style.display = "block";
-    } else {
-      errors[4].style.display = "none";
-    }
-
     if (regexValid) {
-      addStudentToTheTable();
+      addStudent();
       this.reset();
     }
   });
@@ -205,50 +206,29 @@ function validateEdited(event, rowIndex) {
 
   const form = document.getElementById("edit-form");
 
-  group = document.getElementById("edit-group-input-id");
-  firstName = document.getElementById("edit-first-name-input");
-  lastName = document.getElementById("edit-last-name-input");
-  gender = document.getElementById("edit-gender-input");
-  birthday = document.getElementById("edit-birthday-input");
+  students[rowIndex].group = document.getElementById("edit-group-input-id");
+  students[rowIndex].name = document.getElementById("edit-first-name-input");
+  students[rowIndex].surname = document.getElementById("edit-last-name-input");
+  students[rowIndex].gender = document.getElementById("edit-gender-input");
+  students[rowIndex].birthday = document.getElementById("edit-birthday-input");
 
   let errors = form.querySelectorAll("p");
 
   const nameRegex = /^[A-ZА-ЯІЇЄ][a-zа-яіїє'-]{1,19}$/;
   let regexValid = true;
 
-  if (group.value === "") {
-    regexValid = false;
-    errors[0].style.display = "block";
-  } else {
-    errors[0].style.display = "none";
-  }
-
-  if (!nameRegex.test(firstName.value.trim())) {
+  if (!nameRegex.test(students[rowIndex].name.trim())) {
     regexValid = false;
     errors[1].style.display = "block";
   } else {
     errors[1].style.display = "none";
   }
 
-  if (!nameRegex.test(lastName.value.trim())) {
+  if (!nameRegex.test(students[rowIndex].surname.trim())) {
     regexValid = false;
     errors[2].style.display = "block";
   } else {
     errors[2].style.display = "none";
-  }
-
-  if (gender.value === "") {
-    regexValid = false;
-    errors[3].style.display = "block";
-  } else {
-    errors[3].style.display = "none";
-  }
-
-  if (birthday.value === "") {
-    regexValid = false;
-    errors[4].style.display = "block";
-  } else {
-    errors[4].style.display = "none";
   }
 
   if (regexValid) {
@@ -257,7 +237,7 @@ function validateEdited(event, rowIndex) {
   }
 }
 
-function addStudentToTheTable() {
+function addStudentToTheTable(studentIndex) {
   let newRow = tbody.insertRow();
   newRow.style.height = "2.5rem";
 
@@ -268,24 +248,17 @@ function addStudentToTheTable() {
   checkBoxCell.appendChild(checkbox);
 
   let groupCell = newRow.insertCell(1);
-  groupCell.textContent = document.getElementById("add-group-input-id").value;
+  groupCell.textContent = students[studentIndex].group;
 
   let nameCell = newRow.insertCell(2);
   nameCell.textContent =
-    document.getElementById("add-first-name-input").value +
-    " " +
-    document.getElementById("add-last-name-input").value;
+    students[studentIndex].name + " " + students[studentIndex].surname;
 
   let genderCell = newRow.insertCell(3);
-  genderCell.textContent =
-    document.getElementById("add-gender-input").value == "Male" ? "M" : "F";
+  genderCell.textContent = students[studentIndex].gender;
 
   let birthdayCell = newRow.insertCell(4);
-  let birthdayValue = document.getElementById("add-birthday-input").value;
-  let birthdayFormatted = birthdayValue
-    ? birthdayValue.split("-").reverse().join(".")
-    : "N/A";
-  birthdayCell.textContent = birthdayFormatted;
+  birthdayCell.textContent = students[studentIndex].birthday;
 
   let statusCell = newRow.insertCell(5);
   let status = document.createElement("div");
@@ -319,6 +292,24 @@ function addStudentToTheTable() {
   optionsDiv.appendChild(deleteButton);
 
   optionsCell.appendChild(optionsDiv);
+}
+
+function addStudent() {
+  let newStudent = new Student();
+
+  newStudent.id = newStudent.group =
+    document.getElementById("add-group-input-id").value;
+  newStudent.name = document.getElementById("add-first-name-input").value;
+  newStudent.surname = document.getElementById("add-last-name-input").value;
+  newStudent.gender =
+    document.getElementById("add-gender-input").value == "Male" ? "M" : "F";
+
+  let birthdayValue = document.getElementById("add-birthday-input").value;
+  newStudent.birthday = birthdayValue.split("-").reverse().join(".");
+
+  students.push(newStudent);
+  addStudentToTheTable(students.length - 1);
+  updateTableButtons();
 
   document.getElementById("add-group-input-id").selectedIndex = 0;
   document.getElementById("add-first-name-input").value = "";
@@ -329,52 +320,20 @@ function addStudentToTheTable() {
   document.getElementById("overlay").classList.remove("active");
   document.getElementById("add-modal-window").style.display = "none";
 
-  updateTable();
+  // TO DO додати студента в бд
 }
 
 function saveEditedStudent(rowIndex) {
   let currentRow = tbody.rows[rowIndex];
 
-  let groupIndex = document.getElementById("edit-group-input-id").selectedIndex;
-  let firstName = document.getElementById("edit-first-name-input").value;
-  let secondName = document.getElementById("edit-last-name-input").value;
-  let genderIndex = document.getElementById("edit-gender-input").selectedIndex;
-  let birthdayValue = document.getElementById("edit-birthday-input").value;
-  let birthdayFormatted = birthdayValue
-    ? birthdayValue.split("-").reverse().join(".")
-    : "N/A";
-
-  switch (groupIndex) {
-    case 1:
-      currentRow.cells[1].textContent = "KN-21";
-      break;
-    case 2:
-      currentRow.cells[1].textContent = "KN-22";
-      break;
-    case 3:
-      currentRow.cells[1].textContent = "KN-23";
-      break;
-    case 4:
-      currentRow.cells[1].textContent = "KN-24";
-      break;
-  }
-
-  currentRow.cells[2].textContent = firstName + " " + secondName;
-  currentRow.cells[3].textContent = genderIndex === 1 ? "M" : "F";
-
-  currentRow.cells[4].textContent = birthdayFormatted;
-
-  const editedStudentOBJECT = {
-    newGroup: currentRow.cells[1].textContent,
-    newName: currentRow.cells[2].textContent,
-    newGender: genderIndex === 1 ? "Male" : "Female",
-    newBirthday: currentRow.cells[4].textContent,
-  };
-
-  const editedStudentJSON = JSON.stringify(editedStudentOBJECT);
-
-  console.log(editedStudentJSON);
+  currentRow.cells[1].textContent = students[rowIndex].group;
+  currentRow.cells[2].textContent =
+    students[rowIndex].name + " " + students[rowIndex].surname;
+  currentRow.cells[3].textContent = students[rowIndex].gender;
+  currentRow.cells[4].textContent = students[rowIndex].birthday;
 
   document.getElementById("overlay").classList.remove("active");
   document.getElementById("edit-modal-window").style.display = "none";
+
+  // TO DO надіслати зміни в бд
 }
